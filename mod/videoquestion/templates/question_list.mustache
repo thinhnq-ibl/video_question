@@ -1,0 +1,42 @@
+{{!
+    @template mod_videoquestion/question_list
+
+    Template for displaying submitted questions.
+
+    Context variables required for this template:
+    * hasquestions - boolean
+    * canviewquestions - boolean
+    * questions - array of object:
+        * index - integer
+        * question - string
+        * author - string
+        * hasauthor - boolean
+}}
+<div class="videoquestion-questions-container mt-4">
+    <h3>{{#str}}questions, mod_videoquestion{{/str}}</h3>
+
+    {{#hasquestions}}
+        <ol class="list-group list-group-numbered mt-3">
+            {{#questions}}
+                <li class="list-group-item d-flex justify-content-between align-items-start py-3">
+                    <div class="ms-2 me-auto">
+                        <div class="fw-bold text-break" style="font-size: 1.05rem;">
+                            {{question}}
+                        </div>
+                        {{#hasauthor}}
+                            <small class="text-muted">
+                                {{#str}}submittedby, mod_videoquestion, {{author}}{{/str}}
+                            </small>
+                        {{/hasauthor}}
+                    </div>
+                </li>
+            {{/questions}}
+        </ol>
+    {{/hasquestions}}
+
+    {{^hasquestions}}
+        <div class="alert alert-info mt-3" role="alert">
+            {{#str}}noquestions, mod_videoquestion{{/str}}
+        </div>
+    {{/hasquestions}}
+</div>

@@ -23,3 +23,9 @@
 /app/Config/core.php
 /app/Config/database.php
 /vendors/*
+
+moodle_src/
+moodledata/
+phpu_data/
+
+.env

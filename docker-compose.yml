@@ -1,0 +1,41 @@
+services:
+  mariadb:
+    image: mariadb:10.11
+    container_name: videoquestion-mariadb
+    environment:
+      - MARIADB_ROOT_PASSWORD=mariadbrootpassword123
+      - MARIADB_DATABASE=moodle
+      - MARIADB_USER=moodleuser
+      - MARIADB_PASSWORD=moodlepassword123
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    command: >
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_unicode_ci
+      --innodb-file-per-table=1
+      --innodb-large-prefix=1
+    restart: unless-stopped
+    ports:
+      - "3307:3306"
+
+  moodle:
+    image: moodlehq/moodle-php-apache:8.1
+    container_name: videoquestion-moodle
+    ports:
+      - "8080:80"
+    volumes:
+      - ./moodle_src:/var/www/html
+      - moodledata_data:/var/www/moodledata
+      - moodlephpu_data:/var/www/phpu_moodledata
+      - ./mod/videoquestion:/var/www/html/mod/videoquestion
+    depends_on:
+      - mariadb
+    restart: unless-stopped
+
+volumes:
+  mariadb_data:
+    name: videoquestion_mariadb_data
+  moodledata_data:
+    name: videoquestion_moodledata_data
+  moodlephpu_data:
+    name: videoquestion_moodlephpu_data
