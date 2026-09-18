@@ -36,3 +36,18 @@ Example:
    ```
 2. Navigate to **Site administration -> Notifications** to execute the database installation and upgrade.
 3. Add the activity to any course via **Add an activity or resource -> Video Question**.
+
+## Local Development & Demo Accounts
+
+Moodle web URL: `http://localhost:8080`
+
+| Role | Username | Password | Purpose |
+|---|---|---|---|
+| **Site Admin** | `admin` | `AdminPassword123!` | Site administration and settings |
+| **Teacher** | `teacher1` | `TeacherPassword123!` | Course editing, create/edit/delete activity |
+| **Student 1** | `student1` | `StudentPassword123!` | Test initial question submission |
+| **Student 2** | `student2` | `StudentPassword123!` | Test duplicate submission & retry |
+
+- Demo Course: `Video Question Demo` (`http://localhost:8080/course/view.php?id=2`)
+- Demo Activity: `Introduction to Blockchain` (`http://localhost:8080/mod/videoquestion/view.php?id=3`)
+
